@@ -17,10 +17,12 @@ const services = [
       "เชื่อมต่อกับโซเชียลมีเดีย",
     ],
     upgradeFeatures: [
-      "เว็บไซต์หลายหน้า",
-      "ระบบจัดการเนื้อหา (CMS)",
-      "เชื่อมต่อฟอร์ม / โซเชียล",
-      "รองรับ SEO และมือถือ",
+      "เว็บไซต์ 3 - 5 หน้า (หน้าแรก, เกี่ยวกับเรา, ติดต่อเรา)",
+      "ดีไซน์เฉพาะตัว ไม่ใช้ธีมสำเร็จรูป",
+      "รองรับการแสดงผลหลายอุปกรณ์",
+      "ฟอร์มติดต่อ (ส่งข้อความเข้าทาง Email)",
+      "เชื่อมต่อกับโซเชียลมีเดีย",
+      "กราฟิกภาพปกส่วนบน (Banner) ภาพประกอบเว็บไซต์ 3 ภาพ",
     ],
   },
   {
@@ -116,8 +118,12 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-2 gap-6">
             {/* กล่อง เริ่มต้น */}
             <div className="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col hover:bg-gray-200 hover:scale-105 transition duration-300 transform">
-              <h3 className="text-xl font-medium mb-4">เริ่มต้น</h3>
-              <ul className="space-y-3 text-sm">
+            <h3 className="text-2xl font-medium mb-4 text-center">
+              <div>เริ่มต้น</div>
+              <div className="mt-3">5,990 บาท</div>
+            </h3>
+
+              <ul className="space-y-3 text-sm mt-3">
                 {selectedService.starterFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start">
                     <CheckCircle className="text-blue-500 w-5 h-5 mt-1 mr-2 flex-shrink-0" />
@@ -129,8 +135,11 @@ export default function ServicesPage() {
 
             {/* กล่อง อัพเกรด */}
             <div className="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col hover:bg-gray-200 hover:scale-105 transition duration-300 transform">
-              <h3 className="text-xl font-medium mb-4">อัพเกรด</h3>
-              <ul className="space-y-3 text-sm">
+            <h3 className="text-2xl font-medium mb-4 text-center">
+              <div>อัพเกรด</div>
+              <div className="mt-3">7,990 บาท</div>
+            </h3>
+              <ul className="space-y-3 text-sm mt-3">
                 {selectedService.upgradeFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start">
                     <CheckCircle className="text-blue-500 w-5 h-5 mt-1 mr-2 flex-shrink-0" />
