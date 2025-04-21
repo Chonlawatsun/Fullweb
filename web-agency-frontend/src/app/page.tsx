@@ -63,6 +63,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white text-black font-sans">
       <Navbar />
+
 {/* Section 1: Main Intro */}
 <section id="home" className="flex flex-col items-center justify-center text-center px-4 py-24 min-h-[calc(100vh-80px)] relative z-10 bg-[#1c1c1c]">
 <p className="text-2xl md:text-3xl font-light mb-4 text-white">
@@ -142,6 +143,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      
     </main>
   );
 }
