@@ -44,4 +44,20 @@ body {
   animation: glow 2.5s infinite linear;
 }
 
+@keyframes bgMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
+/* สำหรับการไล่สีพื้นหลัง */
+.header {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+
+html {
+  scroll-behavior: smooth;
+}
