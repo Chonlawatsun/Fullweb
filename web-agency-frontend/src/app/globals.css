@@ -1,5 +1,6 @@
 
 @import "tailwindcss";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
 :root {
   --background: #ffffff;
@@ -60,4 +61,32 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 2s ease-out forwards;
 }
