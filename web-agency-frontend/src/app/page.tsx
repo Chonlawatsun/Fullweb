@@ -223,7 +223,7 @@ export default function ServicesPage() {
             className="w-full max-w-[600px] h-auto object-cover"
             animate={{ y: [0, -10, 0] }}
             transition={{
-              duration: 3,
+              duration: 2.5, // ยิ่งน้อยยิ่งเร็ว
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -421,20 +421,21 @@ export default function ServicesPage() {
 
     <SwiperSlide>
       <TemplateCard
-        title="Restaurant Landing"
-        description="เทมเพลตสำหรับร้านอาหารหรือคาเฟ่"
-        image="/tem1.png"
+        title="Atlas"
+        description="เทมเพลตสำหรับธุรกิจหรือเว็บเอเจนซี่"
+        image="/tem2.png"
         link="/templates/Atlas"
       />
     </SwiperSlide>
+    
     {/* เพิ่ม Template อื่น ๆ ได้ตรงนี้ เช่น */}
     {/* <SwiperSlide> <TemplateCard ... /> </SwiperSlide> */}
     <SwiperSlide>
       <TemplateCard
         title="Restaurant Landing"
-        description="เทมเพลตสำหรับร้านอาหารหรือคาเฟ่"
-        image="/tem1.png"
-        link="/templates/restaurant-landing"
+        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        image="/tem3.png"
+        link="/templates/spering"
       />
     </SwiperSlide>
   </Swiper>
@@ -442,9 +443,9 @@ export default function ServicesPage() {
 
   
         {/* Section: Process */}
-<section id="process" className="bg-gradient-to-b from-white to-gray-50 py-20 px-4 text-center scroll-mt-17">
+        <section id="process" className="bg-gradient-to-b from-white to-gray-50 py-20 px-4 text-center scroll-mt-17">
   <div className="max-w-6xl mx-auto">
-    
+
     {/* หัวข้อหลัก */}
     <h2 className="text-3xl md:text-4xl font-medium text-[#fbbf24] mb-4">ขั้นตอนการสั่งทำเว็บไซต์</h2>
     <p className="text-lg font-medium bg-black text-white inline-block px-6 py-2 rounded-full mb-12 shadow">
@@ -453,44 +454,52 @@ export default function ServicesPage() {
 
     {/* กล่องขั้นตอน */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-  {[1, 2, 3, 4].map((step) => {
-    const titles = [
-      "พูดคุยและวางแผน",
-      "เสนอราคาและเริ่มงาน",
-      "พัฒนาและตรวจสอบ",
-      "ส่งมอบเว็บไซต์ให้ลูกค้า"
-    ];
-    const descriptions = [
-      "ติดต่อเราที่ page facebook เพื่อแจ้งรายละเอียดเว็บไซต์ที่ต้องการ ",
-      "เราประเมินราคาและแจ้งระยะเวลาการทำงาน ลูกค้าชำระมัดจำเพื่อเริ่มต้น",
-      "เราออกแบบและพัฒนาเว็บไซต์ พร้อมส่งให้ลูกค้าเพื่อตรวจสอบ",
-      "อัปโหลดเว็บไซต์ให้พร้อมใช้งาน และบริการหลังการขายเบื้องต้น"
-    ];
-    const iconPaths = [
-      "/icons/chat.png",
-      "/icons/document.png",
-      "/icons/idea.png",
-      "/icons/handshake.png"
-    ];
-    
-    return (
-      <ParallaxCard key={step}>
-        <div className="bg-gray-100 rounded-xl p-6 text-left flex flex-col items-center transition transform hover:scale-105 hover:shadow-xl shadow-md min-h-[350px] flex-1">
-          <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-white shadow">
-            <span className="text-xl font-medium">{step}</span>
-          </div>
-          <h3 className="text-lg font-medium mb-2 text-center">{titles[step - 1]}</h3>
-          <div className="w-20 h-20 mb-6 mt-2">
-            <img src={iconPaths[step - 1]} alt={`icon${step}`} className="w-full h-full object-contain" />
-          </div>
-          <p className="text-sm text-gray-600 text-center">
-            {descriptions[step - 1]}
-          </p>
-        </div>
-      </ParallaxCard>
-    );
-  })}
-</div>
+      {[1, 2, 3, 4].map((step) => {
+        const titles = [
+          "พูดคุยและวางแผน",
+          "เสนอราคาและเริ่มงาน",
+          "พัฒนาและตรวจสอบ",
+          "ส่งมอบเว็บไซต์ให้ลูกค้า"
+        ];
+        const descriptions = [
+          "ติดต่อเราที่ page facebook เพื่อแจ้งรายละเอียดเว็บไซต์ที่ต้องการ ",
+          "เราประเมินราคาและแจ้งระยะเวลาการทำงาน ลูกค้าชำระมัดจำเพื่อเริ่มต้น",
+          "เราออกแบบและพัฒนาเว็บไซต์ พร้อมส่งให้ลูกค้าเพื่อตรวจสอบ",
+          "อัปโหลดเว็บไซต์ให้พร้อมใช้งาน และบริการหลังการขายเบื้องต้น"
+        ];
+        const iconPaths = [
+          "/icons/chat.png",
+          "/icons/document.png",
+          "/icons/idea.png",
+          "/icons/handshake.png"
+        ];
+
+        return (
+          <motion.div
+            key={step}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            <ParallaxCard>
+              <div className="bg-gray-100 rounded-xl p-6 text-left flex flex-col items-center transition transform hover:scale-105 hover:shadow-xl shadow-md min-h-[350px] flex-1">
+                <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-white shadow">
+                  <span className="text-xl font-medium">{step}</span>
+                </div>
+                <h3 className="text-lg font-medium mb-2 text-center">{titles[step - 1]}</h3>
+                <div className="w-20 h-20 mb-6 mt-2">
+                  <img src={iconPaths[step - 1]} alt={`icon${step}`} className="w-full h-full object-contain" />
+                </div>
+                <p className="text-sm text-gray-600 text-center">
+                  {descriptions[step - 1]}
+                </p>
+              </div>
+            </ParallaxCard>
+          </motion.div>
+        );
+      })}
+    </div>
 
   </div>
 </section>
