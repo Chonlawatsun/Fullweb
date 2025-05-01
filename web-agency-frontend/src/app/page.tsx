@@ -13,7 +13,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import ParallaxCard from '../components/ParallaxCard';
-
+import { TemplateCard } from "@/components/TemplateCard";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -103,6 +104,36 @@ const projects = [
   }
 ];
 
+const cardAnimation = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const slideInAnimation = {
+  hidden: {
+    opacity: 0,
+    x: -100, // เลื่อนจากทางซ้าย
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut',
+    },
+  },
+};
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -134,51 +165,70 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white text-black font-sans">
       <Navbar />
- 
+{/* ใส่ dev ครอบ section 1 and 2 เพื่อทำใช้พื้นหลังอันเดียวกัน*/}
+<div className="bg-gradient-to-b from-[#1c1c1c] via-[#2a2a2a] to-[#1c1c1c] min-h-[200vh]">      
 {/* Section 1: Main Intro */}
 <section
   id="home"
-  className="relative z-10 px-6 py-32 min-h-[calc(100vh-80px)] flex flex-col xl:flex-row items-center justify-center bg-gradient-to-br from-[#1c1c1c] via-[#2a2a2a] to-black"
+  className="relative z-10 px-6 py-32 min-h-screen flex flex-col xl:flex-row items-center justify-center bg-transparent"
 >
   <div className="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-12 max-w-7xl w-full">
 
     {/* Left: Text */}
-    <div className="flex flex-col items-center text-center xl:items-start xl:text-center px-4 animate-fade-in">
-      <div className="w-full">
-        <p className="text-xl xl:text-2xl font-light mb-4 text-white">
-          อยากมีเว็บไซต์เป็นของตัวเอง ?
-        </p>
-
-        <h2 className="text-3xl md:text-5xl xl:text-7xl font-medium mb-6 text-white">
-          <span className="block relative">
-            แค่บอกเรา{" "}
-            <span className="relative inline-block">
-              <span className="relative z-20 text-yellow-400">ทุกอย่างง่ายนิดเดียว</span>
-              <span
-                className="absolute inset-0 animate-glow bg-gradient-to-r from-yellow-400/10 via-yellow-400/30 to-yellow-400/10 blur-md rounded z-10 pointer-events-none"
-                aria-hidden="true"
-              ></span>
-            </span>{" "}
-          </span>
-        </h2>
-
-        <a
-          href="#contact"
-          className="mt-4 inline-block px-8 py-4 border-2 border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition font-semibold"
+    <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center text-center xl:items-start xl:text-center px-4"
         >
-          สั่งทำเว็บไซต์เลย
-        </a>
-      </div>
-    </div>
+          <div className="w-full">
+            <p className="text-xl xl:text-2xl font-light mb-4 text-white">
+              อยากมีเว็บไซต์เป็นของตัวเอง ?
+            </p>
+
+            <h2 className="text-3xl md:text-5xl xl:text-7xl font-medium mb-6 text-white">
+              <span className="block relative">
+                แค่บอกเรา{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-20 text-yellow-400">ทุกอย่างง่ายนิดเดียว</span>
+                  <span
+                    className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-yellow-400/30 to-yellow-400/10 blur-md rounded z-10 pointer-events-none"
+                    aria-hidden="true"
+                  ></span>
+                </span>{" "}
+              </span>
+            </h2>
+
+            <a
+              href="#contact"
+              className="mt-4 inline-block px-8 py-4 border-2 border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition font-semibold"
+            >
+              สั่งทำเว็บไซต์เลย
+            </a>
+          </div>
+        </motion.div>
 
     {/* Right: Image */}
-    <div className="w-full xl:w-[60%] flex justify-center animate-float animate-fade-in">
-      <img
-        src="/MacBook.png"
-        alt="สร้างเว็บไซต์ของคุณ"
-        className="w-full max-w-[600px] h-auto object-cover animate-float"
-      />
-    </div>
+    <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut', delay: 0.3 }}
+          viewport={{ once: true }}
+          className="w-full xl:w-[60%] flex justify-center"
+        >
+          <motion.img
+            src="/MacBook.png"
+            alt="สร้างเว็บไซต์ของคุณ"
+            className="w-full max-w-[600px] h-auto object-cover"
+            animate={{ y: [0, -10, 0] }}
+            transition={{
+              duration: 2.5, // ยิ่งน้อยยิ่งเร็ว
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </motion.div>
 
   </div>
 </section>
@@ -186,23 +236,26 @@ export default function ServicesPage() {
 {/* Section 2: Mobile */}
 <section
   id="benefits"
-  className="relative z-10 px-6 py-24 bg-gradient-to-br from-black via-[#1c1c1c] to-[#2a2a2a]"
+  className="relative z-10 px-6 py-24 min-h-[100vh] bg-transparent -mt-12"
 >
+
   <div className="flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto gap-0">
 
     {/* Left: Image */}
-    <div 
-      className="w-full md:w-1/2 flex justify-center animate-float"
-      data-aos="fade-right" // AOS Animation
-      data-aos-duration="1000"
-      data-aos-delay="200"
-    >
-      <img
-        src="/iPhone.png" // รูปโทรศัพท์ (เปลี่ยน path ตามที่มีได้เลย)
-        alt="เว็บไซต์รองรับมือถือ"
-        className="w-full max-w-[200px] xl:max-w-[300px] h-auto object-cover mt-10"
-      />
-    </div>
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
+      viewport={{ once: true }}
+      className="w-full md:w-1/2 flex justify-center"
+>
+    <img
+      src="/iPhone.png"
+      alt="เว็บไซต์รองรับมือถือ"
+    className="w-full max-w-[200px] xl:max-w-[300px] h-auto object-cover mt-10"
+  />
+</motion.div>
+
 
     {/* Right: Text */}
     <div 
@@ -244,21 +297,26 @@ export default function ServicesPage() {
 
   </div>
 </section>
-
+</div>
 
     {/* Section 3: Services */}
-<section id="services" className="px-4 py-16 bg-gradient-to-b from-white to-gray-50">
+<section id="services" className="min-h-screen px-4 py-16 bg-gradient-to-b from-white to-gray-50 scroll-mt-16">
   <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
 
     {/* ฝั่งซ้าย: Service Cards */}
-    <div className="flex flex-col gap-6 h-full lg:flex-[1.5] 2xl:flex-[3]">
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="flex flex-col gap-6 h-full lg:flex-[1.5] 2xl:flex-[3]"
+    >
       {services.map((service, idx) => (
         <ParallaxCard key={idx}>
           <div
             className="relative bg-white rounded-xl shadow-md p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-between h-full hover:bg-gray-100 hover:scale-[1.02] transition duration-300"
             onClick={() => setSelectedService(service)}
           >
-            {/* ริบบิ้น Hot */}
             {service.name === "Basic" && (
               <div className="absolute top-0 right-0 bg-yellow-400 text-white text-xs sm:text-sm font-medium px-3 py-1.5 rounded-bl-xl z-10 flex items-center gap-2 shadow-xl">
                 <img src="/icons/hot.png" alt="Hot" className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
@@ -275,10 +333,16 @@ export default function ServicesPage() {
           </div>
         </ParallaxCard>
       ))}
-    </div>
+    </motion.div>
 
     {/* ฝั่งขวา: เริ่มต้น / อัพเกรด (ให้สูงเท่าฝั่งซ้าย) */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 self-stretch lg:flex-[3.5] 2xl:flex-[5]">
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+      viewport={{ once: true }}
+      className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 self-stretch lg:flex-[3.5] 2xl:flex-[5]"
+    >
       {/* กล่อง เริ่มต้น */}
       <ParallaxCard>
         <div className="bg-gray-100 rounded-xl shadow-md p-4 sm:p-6 md:p-8 flex flex-col h-full hover:bg-gray-200 hover:scale-[1.02] transition duration-300">
@@ -314,55 +378,74 @@ export default function ServicesPage() {
           </ul>
         </div>
       </ParallaxCard>
-    </div>
+    </motion.div>
 
   </div>
 </section>
 
-
-        {/* Section 3: Projects */}
-      <section id="projects" className="py-20 bg-[#1c1c1c] px-4">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl font-medium text-white mb-5">ตัวอย่างงาน</h2>
-    <p className="text-lg font-light text-white mb-12">เราตั้งใจออกแบบเว็บไซต์ให้ตรงตามความต้องการของลูกค้าให้มากที่สุด</p>
-
-    {/* Project Cards */}
-    <div className="flex flex-col gap-12 lg:flex-row lg:flex-wrap lg:justify-center">
-      {projects.map((project, idx) => (
-        <div
-          key={idx}
-          className="w-full lg:w-[30%] flex-shrink-0 bg-gray-100 p-4 rounded-xl shadow-lg text-left"
-        >
-          <h3 className="text-2xl font-semibold mb-4">{project.name}</h3>
-
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={10}
-            slidesPerView={1}
-            className="rounded-xl overflow-hidden"
-          >
-            {project.images.map((img, i) => (
-              <SwiperSlide key={i}>
-                <img
-                  src={img}
-                  alt={`${project.name} - ${i + 1}`}
-                  className="w-full h-[200px] object-cover rounded-xl"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      ))}
-    </div>
+{/* Section : Template Showcase */}
+<section
+  id="templates"
+  className="min-h-[80vh] relative z-10 px-6 py-20 bg-gradient-to-br from-[#1c1c1c] via-[#2a2a2a] to-black"
+>
+  <div
+    className="max-w-7xl mx-auto text-center mb-12"
+    data-aos="fade-up"
+  >
+    <h2 className="text-4xl font-medium mb-4 text-amber-50">เทมเพลตของเรา</h2>
+    <p className="text-amber-50">เรามีเทมเพลตสวย ๆ ให้เลือกตามสไตล์ที่ต้องการ</p>
   </div>
+
+  {/* Swiper: Template Cards */}
+  <Swiper
+    modules={[Pagination]}
+    spaceBetween={30}
+    slidesPerView={1}
+    pagination={{ clickable: true }}
+    breakpoints={{
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    }}
+    className="max-w-7xl mx-auto"
+    data-aos="fade-up"
+  >
+    <SwiperSlide>
+      <TemplateCard
+        title="Finexo"
+        description="เทมเพลตธุรกิจหรือเว็บเอเจนซี่"
+        image="/tem1.2.png" // คุณเปลี่ยน path รูป preview ได้
+        link="/templates/finexo" // ใช้ลิงก์ที่เปิด iframe ได้
+      />
+    </SwiperSlide>
+
+    <SwiperSlide>
+      <TemplateCard
+        title="Atlas"
+        description="เทมเพลตสำหรับธุรกิจหรือเว็บเอเจนซี่"
+        image="/tem2.png"
+        link="/templates/Atlas"
+      />
+    </SwiperSlide>
+    
+    {/* เพิ่ม Template อื่น ๆ ได้ตรงนี้ เช่น */}
+    {/* <SwiperSlide> <TemplateCard ... /> </SwiperSlide> */}
+    <SwiperSlide>
+      <TemplateCard
+        title="Restaurant Landing"
+        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        image="/tem3.png"
+        link="/templates/spering"
+      />
+    </SwiperSlide>
+  </Swiper>
 </section>
 
   
         {/* Section: Process */}
-<section id="process" className="bg-gradient-to-b from-white to-gray-50 py-20 px-4 text-center">
+        <section id="process" className="bg-gradient-to-b from-white to-gray-50 py-20 px-4 text-center scroll-mt-17">
   <div className="max-w-6xl mx-auto">
-    
+
     {/* หัวข้อหลัก */}
     <h2 className="text-3xl md:text-4xl font-medium text-[#fbbf24] mb-4">ขั้นตอนการสั่งทำเว็บไซต์</h2>
     <p className="text-lg font-medium bg-black text-white inline-block px-6 py-2 rounded-full mb-12 shadow">
@@ -371,127 +454,141 @@ export default function ServicesPage() {
 
     {/* กล่องขั้นตอน */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-  {[1, 2, 3, 4].map((step) => {
-    const titles = [
-      "พูดคุยและวางแผน",
-      "เสนอราคาและเริ่มงาน",
-      "พัฒนาและตรวจสอบ",
-      "ส่งมอบเว็บไซต์ให้ลูกค้า"
-    ];
-    const descriptions = [
-      "ติดต่อเราที่ page facebook เพื่อแจ้งรายละเอียดเว็บไซต์ที่ต้องการ ",
-      "เราประเมินราคาและแจ้งระยะเวลาการทำงาน ลูกค้าชำระมัดจำเพื่อเริ่มต้น",
-      "เราออกแบบและพัฒนาเว็บไซต์ พร้อมส่งให้ลูกค้าเพื่อตรวจสอบ",
-      "อัปโหลดเว็บไซต์ให้พร้อมใช้งาน และบริการหลังการขายเบื้องต้น"
-    ];
-    const iconPaths = [
-      "/icons/chat.png",
-      "/icons/document.png",
-      "/icons/idea.png",
-      "/icons/handshake.png"
-    ];
-    
-    return (
-      <ParallaxCard key={step}>
-        <div className="bg-gray-100 rounded-xl p-6 text-left flex flex-col items-center transition transform hover:scale-105 hover:shadow-xl shadow-md min-h-[350px] flex-1">
-          <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-white shadow">
-            <span className="text-xl font-medium">{step}</span>
-          </div>
-          <h3 className="text-lg font-medium mb-2 text-center">{titles[step - 1]}</h3>
-          <div className="w-20 h-20 mb-6 mt-2">
-            <img src={iconPaths[step - 1]} alt={`icon${step}`} className="w-full h-full object-contain" />
-          </div>
-          <p className="text-sm text-gray-600 text-center">
-            {descriptions[step - 1]}
-          </p>
-        </div>
-      </ParallaxCard>
-    );
-  })}
-</div>
+      {[1, 2, 3, 4].map((step) => {
+        const titles = [
+          "พูดคุยและวางแผน",
+          "เสนอราคาและเริ่มงาน",
+          "พัฒนาและตรวจสอบ",
+          "ส่งมอบเว็บไซต์ให้ลูกค้า"
+        ];
+        const descriptions = [
+          "ติดต่อเราที่ page facebook เพื่อแจ้งรายละเอียดเว็บไซต์ที่ต้องการ ",
+          "เราประเมินราคาและแจ้งระยะเวลาการทำงาน ลูกค้าชำระมัดจำเพื่อเริ่มต้น",
+          "เราออกแบบและพัฒนาเว็บไซต์ พร้อมส่งให้ลูกค้าเพื่อตรวจสอบ",
+          "อัปโหลดเว็บไซต์ให้พร้อมใช้งาน และบริการหลังการขายเบื้องต้น"
+        ];
+        const iconPaths = [
+          "/icons/chat.png",
+          "/icons/document.png",
+          "/icons/idea.png",
+          "/icons/handshake.png"
+        ];
+
+        return (
+          <motion.div
+            key={step}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            <ParallaxCard>
+              <div className="bg-gray-100 rounded-xl p-6 text-left flex flex-col items-center transition transform hover:scale-105 hover:shadow-xl shadow-md min-h-[350px] flex-1">
+                <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-white shadow">
+                  <span className="text-xl font-medium">{step}</span>
+                </div>
+                <h3 className="text-lg font-medium mb-2 text-center">{titles[step - 1]}</h3>
+                <div className="w-20 h-20 mb-6 mt-2">
+                  <img src={iconPaths[step - 1]} alt={`icon${step}`} className="w-full h-full object-contain" />
+                </div>
+                <p className="text-sm text-gray-600 text-center">
+                  {descriptions[step - 1]}
+                </p>
+              </div>
+            </ParallaxCard>
+          </motion.div>
+        );
+      })}
+    </div>
 
   </div>
 </section>
 
 
+<section id="contact" className="bg-[#1c1c1c] text-white py-20 px-4 scroll-mt-15">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        {/* Left Side - Contact Channels */}
+        <motion.div
+          className="space-y-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={slideInAnimation} // ใช้ animation ที่กำหนดไว้
+        >
+          <h2 className="text-3xl md:text-4xl font-medium mb-10 text-white">ช่องทางการติดต่อ</h2>
+          
+          {/* ช่องทางการติดต่อ */}
+          <a href="https://www.facebook.com/Fullweb.dev" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
+            <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-xl">f</span>
+            <span className="text-black font-medium">Full Web - บริการออกแบบและทำเว็บไซต์ครบวงจร</span>
+          </a>
+          <a href="https://line.me/ti/p/@682nkzsq" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
+            <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-sm">LINE</span>
+            <span className="text-black font-medium">full web service</span>
+          </a>
+          <a href="mailto:fullweb.teamservice@gmail.com" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
+            <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-xl">✉️</span>
+            <span className="text-black font-medium">fullweb.teamservice@gmail.com</span>
+          </a>
+          <a href="tel:+66936150842" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
+            <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
+              <Phone size={20} />
+            </span>
+            <span className="text-black font-medium">093-615-0842</span>
+          </a>
+        </motion.div>
 
-      {/* Section: Contact Us */}
-<section id="contact" className="bg-[#1c1c1c] text-white py-20 px-4">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-    {/* Left Side - Contact Channels */}
-    <div>
-      <h2 className="text-3xl md:text-4xl font-medium mb-10 text-white">ช่องทางการติดต่อ</h2>
-      <div className="space-y-6">
-        <a href="https://www.facebook.com/Fullweb.dev" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
-          <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-xl">f</span>
-          <span className="text-black font-medium">Full Web - บริการออกแบบและทำเว็บไซต์ครบวงจร</span>
-        </a>
-        <a href="https://line.me/ti/p/@682nkzsq" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
-          <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-sm">LINE</span>
-          <span className="text-black font-medium">full web service</span>
-        </a>
-        <a href="mailto:fullweb.teamservice@gmail.com" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
-          <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4 text-xl">✉️</span>
-          <span className="text-black font-medium">fullweb.teamservice@gmail.com</span>
-        </a>
-        <a href="tel:+66936150842" className="flex items-center px-6 py-4 bg-gray-200 rounded-full shadow hover:scale-105 transition">
-          <span className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
-            <Phone size={20} />
-          </span>
-          <span className="text-black font-medium">093-615-0842</span>
-        </a>
+        {/* Right Side - Contact Form */}
+        <motion.div
+          className="bg-white rounded-xl p-8 shadow-md text-black"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={cardAnimation}
+        >
+          <h3 className="text-2xl font-medium mb-6">ส่งข้อความหาเรา</h3>
+          <form action="https://formspree.io/f/xpwdzdow" method="POST">
+            <div className="mb-4">
+              <label className="block font-medium mb-1">ชื่อของคุณ</label>
+              <input
+                type="text"
+                name="name"
+                className="w-full px-4 py-2 border border-gray-300 rounded"
+                placeholder="กรอกชื่อของคุณ"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block font-medium mb-1">อีเมล</label>
+              <input
+                type="email"
+                name="email"
+                className="w-full px-4 py-2 border border-gray-300 rounded"
+                placeholder="example@email.com"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-medium mb-1">ข้อความ</label>
+              <textarea
+                name="message"
+                className="w-full px-4 py-2 border border-gray-300 rounded"
+                rows={5}
+                placeholder={"คุณต้องการสอบถามอะไร...\nช่องทางการติดต่อกลับ เช่น LINE, Facebook,"}
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition"
+            >
+              ส่งข้อความ
+            </button>
+          </form>
+        </motion.div>
       </div>
-    </div>
-
-    {/* Right Side - Contact Form */}
-    <div className="bg-white rounded-xl p-8 shadow-md text-black">
-      <h3 className="text-2xl font-medium mb-6">ส่งข้อความหาเรา</h3>
-      
-      <form action="https://formspree.io/f/xpwdzdow" method="POST" onSubmit={handleSubmit}> 
-
-  <div className="mb-4">
-    <label className="block font-medium mb-1">ชื่อของคุณ</label>
-    <input
-      type="text"
-      name="name"
-      className="w-full px-4 py-2 border border-gray-300 rounded"
-      placeholder="กรอกชื่อของคุณ"
-      required
-    />
-  </div>
-  <div className="mb-4">
-    <label className="block font-medium mb-1">อีเมล</label>
-    <input
-      type="email"
-      name="email"
-      className="w-full px-4 py-2 border border-gray-300 rounded"
-      placeholder="example@email.com"
-      required
-    />
-  </div>
-  
-  <div className="mb-4">
-    <label className="block font-medium mb-1">ข้อความ</label>
-    <textarea
-      name="message"
-      className="w-full px-4 py-2 border border-gray-300 rounded"
-      rows={5}
-      placeholder={"คุณต้องการสอบถามอะไร...\nช่องทางการติดต่อกลับ เช่น LINE, Facebook,"}
-      required
-    ></textarea>
-  </div>
-  <button
-    type="submit"
-    
-    className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition"
-  >
-    ส่งข้อความ
-  </button>
-</form>
-
-    </div>
-  </div>
-</section>
+    </section>
 
         {/* Footer */}
         <footer className="bg-gray-700 text-white py-6 text-center">
