@@ -7,7 +7,7 @@ import { Phone } from 'lucide-react';
 import toast from "react-hot-toast";
 import { SetupProviders } from "@/components/SetupProviders";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination ,Navigation,Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -166,138 +166,149 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-white text-black font-sans">
       <Navbar />
 {/* ใส่ dev ครอบ section 1 and 2 เพื่อทำใช้พื้นหลังอันเดียวกัน*/}
-<div className="bg-gradient-to-b from-[#1c1c1c] via-[#2a2a2a] to-[#1c1c1c] min-h-[200vh]">      
-{/* Section 1: Main Intro */}
-<section
-  id="home"
-  className="relative z-10 px-6 py-32 min-h-screen flex flex-col xl:flex-row items-center justify-center bg-transparent"
->
-  <div className="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-12 max-w-7xl w-full">
-
-    {/* Left: Text */}
-    <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center text-center xl:items-start xl:text-center px-4"
-        >
-          <div className="w-full">
-            <p className="text-xl xl:text-2xl font-light mb-4 text-white">
-              อยากมีเว็บไซต์เป็นของตัวเอง ?
-            </p>
-
-            <h2 className="text-3xl md:text-5xl xl:text-7xl font-medium mb-6 text-white">
-              <span className="block relative">
-                แค่บอกเรา{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-20 text-yellow-400">ทุกอย่างง่ายนิดเดียว</span>
-                  <span
-                    className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-yellow-400/30 to-yellow-400/10 blur-md rounded z-10 pointer-events-none"
-                    aria-hidden="true"
-                  ></span>
-                </span>{" "}
-              </span>
-            </h2>
-
-            <a
-              href="#contact"
-              className="mt-4 inline-block px-8 py-4 border-2 border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition font-semibold"
-            >
-              สั่งทำเว็บไซต์เลย
-            </a>
-          </div>
-        </motion.div>
-
-    {/* Right: Image */}
-    <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut', delay: 0.3 }}
-          viewport={{ once: true }}
-          className="w-full xl:w-[60%] flex justify-center"
-        >
-          <motion.img
-            src="/MacBook.png"
-            alt="สร้างเว็บไซต์ของคุณ"
-            className="w-full max-w-[600px] h-auto object-cover"
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 2.5, // ยิ่งน้อยยิ่งเร็ว
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        </motion.div>
-
-  </div>
-</section>
-
-{/* Section 2: Mobile */}
-<section
-  id="benefits"
-  className="relative z-10 px-6 py-24 min-h-[100vh] bg-transparent -mt-12"
->
-
-  <div className="flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto gap-0">
-
-    {/* Left: Image */}
-    <motion.div
-      initial={{ opacity: 0, x: -100 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
-      viewport={{ once: true }}
-      className="w-full md:w-1/2 flex justify-center"
->
-    <img
-      src="/iPhone.png"
-      alt="เว็บไซต์รองรับมือถือ"
-    className="w-full max-w-[200px] xl:max-w-[300px] h-auto object-cover mt-10"
-  />
-</motion.div>
-
-
-    {/* Right: Text */}
-    <div 
-      className="w-full md:w-1/2 flex flex-col items-center md:items-start text-white"
-      data-aos="fade-left" // AOS Animation
-      data-aos-duration="1000"
-      data-aos-delay="300"
-    >
-      <h2 className="text-3xl md:text-4xl xl:text-6xl font-medium mb-8">
-        ทำไมต้องเลือกเราสร้างเว็บไซต์ให้คุณ?
-      </h2>
-
-      <ul className="space-y-6 text-lg md:text-xl xl:text-2xl">
-        <li className="flex items-center gap-4">
-          <i className="fas fa-mobile-alt text-yellow-400 text-3xl"></i>
-          รองรับทุกอุปกรณ์ (Responsive)
-        </li>
-        <li className="flex items-center gap-4">
-          <i className="fas fa-palette text-yellow-400 text-3xl"></i>
-          ออกแบบตรงตามความต้องการ
-        </li>
-        <li className="flex items-center gap-4">
-          <i className="fas fa-tags text-yellow-400 text-3xl"></i>
-          ราคาคุ้มค่า ไม่แพง
-        </li>
-        <li className="flex items-center gap-4">
-          <i className="fas fa-headset text-yellow-400 text-3xl"></i>
-          ดูแลและให้คำปรึกษาหลังส่งมอบ
-        </li>
-      </ul>
-
-      <a
-        href="#contact"
-        className="mt-10 inline-block px-8 py-4 border-2 border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition font-semibold"
+<div id="home" className="bg-gradient-to-b from-[#1c1c1c] via-[#2a2a2a] to-[#1c1c1c] min-h-screen text-white shadow-lg">
+ 
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        //navigation ลูกศรด้านข้าง
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        speed={1500} // ปรับความเร็วที่นี่ (หน่วยเป็นมิลลิวินาที)
+        className="w-full h-screen"
       >
-        ติดต่อเราเลย
-      </a>
+        {/* Slide 1: Intro */}
+        <SwiperSlide>
+ 
+          {/* section : 1 */}
+          <section className="px-6 py-25 min-h-screen flex flex-col xl:flex-row items-center justify-center">
+            <div className="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-12 max-w-7xl w-full">
+             
+              {/* Left: Text */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center xl:items-start xl:text-center px-4"
+              >
+                <div className="w-full">
+                  <p className="text-xl xl:text-2xl font-light mb-4">
+                    อยากมีเว็บไซต์เป็นของตัวเอง ?
+                  </p>
+                  <h2 className="text-3xl md:text-5xl xl:text-7xl font-medium mb-6">
+                    <span className="block relative ">
+                      แค่บอกเรา{" "}
+                      <span className="relative inline-block mt-2">
+                        <span className="relative z-20 text-yellow-400">
+                          ทุกอย่างง่ายนิดเดียว
+                        </span>
+                        <span
+                          className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-yellow-400/30 to-yellow-400/10 blur-md rounded z-10 pointer-events-none"
+                          aria-hidden="true"
+                        ></span>
+                      </span>
+                    </span>
+                  </h2>
+ 
+                  <a
+                    href="#contact"
+                    className=" inline-block
+                      px-4 py-2 text-sm rounded-md
+                      border-2 border-yellow-400 text-yellow-400
+                      hover:bg-yellow-400 hover:text-black
+                      transition font-semibold
+                      sm:px-6 sm:py-3 sm:text-base sm:rounded-lg
+                      md:px-8 md:py-4 md:text-lg md:rounded-full"
+                  >
+                    สั่งทำเว็บไซต์เลย
+                  </a>
+                </div>
+              </motion.div>
+ 
+              {/* Right: Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
+                viewport={{ once: true }}
+                className="w-full xl:w-[60%] flex justify-center"
+              >
+                <motion.img
+                  src="/MacBook.png"
+                  alt="สร้างเว็บไซต์ของคุณ"
+                  className="w-[300px] md:w-[380px] xl:w-[500px] max-w-[600px] h-auto object-cover"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+            </div>
+          </section>
+        </SwiperSlide>
+ 
+        {/* Slide 2: Mobile Support */}
+        <SwiperSlide>
+ 
+          {/* section : 2 */}
+          <section className="px-6 py-25 min-h-screen flex items-center">
+            <div className="flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto gap-0 w-full">
+              {/* Left: Image */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                viewport={{ once: true }}
+                className="w-full md:w-1/2 flex justify-center"
+               
+              >
+                <img
+                  src="/iPhone.png"
+                  alt="เว็บไซต์รองรับมือถือ"
+                  className="w-full max-w-[230px] xl:max-w-[250px] h-auto object-cover mt-10"
+                />
+              </motion.div>
+ 
+              {/* Right: Text */}
+              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-white">
+                <h2 className="text-xl md:text-4xl xl:text-6xl font-medium mb-8">
+                  ทำไมต้องเลือกเราสร้างเว็บไซต์ให้คุณ?
+                </h2>
+                <ul className="space-y-6 text-base md:text-xl xl:text-2xl font-light">
+                  <li className="flex items-center gap-4">
+                    <i className="fas fa-mobile-alt text-yellow-400 text-xl md:text-2xl xl:text-3xl"></i>
+                    รองรับทุกอุปกรณ์ (Responsive)
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <i className="fas fa-palette text-yellow-400 text-xl md:text-2xl xl:text-3xl"></i>
+                    ออกแบบตรงตามความต้องการ
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <i className="fas fa-tags text-yellow-400 text-xl md:text-2xl xl:text-3xl"></i>
+                    ราคาคุ้มค่า ไม่แพง
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <i className="fas fa-headset text-yellow-400 text-xl md:text-2xl xl:text-3xl"></i>
+                    ดูแลและให้คำปรึกษาหลังส่งมอบ
+                  </li>
+                </ul>
+                <a
+                  href="#contact"
+                  className="mt-10 inline-block px-8 py-4 border-2 border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition font-semibold"
+                >
+                  ติดต่อเราเลย
+                </a>
+              </div>
+            </div>
+          </section>
+        </SwiperSlide>
+      </Swiper>
     </div>
-
-  </div>
-</section>
-</div>
 
     {/* Section 3: Services */}
 <section id="services" className="min-h-screen px-4 py-16 bg-gradient-to-b from-white to-gray-50 scroll-mt-16">
@@ -353,7 +364,7 @@ export default function ServicesPage() {
           <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base lg:text-xm mt-2"> 
             {selectedService.starterFeatures.map((feature, i) => (
               <li key={i} className="flex items-start">
-                <CheckCircle className="text-blue-500 w-4 h-4 sm:w-5 sm:h-5 mt-1 mr-2 flex-shrink-0" />
+                <CheckCircle className="text-yellow-500 w-4 h-4 sm:w-5 sm:h-5 mt-1 mr-2 flex-shrink-0" />
                 <span>{feature}</span>
               </li>
             ))}
@@ -371,7 +382,7 @@ export default function ServicesPage() {
           <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base lg:text-xm mt-2">
             {selectedService.upgradeFeatures.map((feature, i) => (
               <li key={i} className="flex items-start">
-                <CheckCircle className="text-blue-500 w-4 h-4 sm:w-5 sm:h-5 mt-1 mr-2 flex-shrink-0" />
+                <CheckCircle className="text-yellow-500 w-4 h-4 sm:w-5 sm:h-5 mt-1 mr-2 flex-shrink-0" />
                 <span>{feature}</span>
               </li>
             ))}
