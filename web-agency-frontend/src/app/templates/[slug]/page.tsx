@@ -1,16 +1,15 @@
 // src/app/templates/[slug]/page.tsx
 
-import { notFound } from "next/navigation";
-
 interface TemplatePageProps {
   params: {
     slug: string;
   };
 }
 
-// ✅ ต้อง destructure params ข้างในตัวฟังก์ชัน
-export default async function TemplatePage(props: { params: { slug: string } }) {
-  const { slug } = props.params;
+export default async function TemplatePage(props: {
+  params: { slug: string };
+}) {
+  const slug = props.params.slug;
 
   const safeSlug = slug.replace(/[^a-zA-Z0-9-_]/g, "");
   const url = `/templates/${safeSlug}/index.html`;
@@ -21,4 +20,3 @@ export default async function TemplatePage(props: { params: { slug: string } }) 
     </div>
   );
 }
-
