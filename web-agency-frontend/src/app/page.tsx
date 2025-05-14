@@ -15,6 +15,20 @@ import "swiper/css/scrollbar";
 import ParallaxCard from '../components/ParallaxCard';
 import { TemplateCard } from "@/components/TemplateCard";
 import { motion } from "framer-motion";
+import { Typewriter } from 'react-simple-typewriter';
+
+<h2 className="text-2xl font-bold">
+  <Typewriter
+    words={['บริการของเรา', 'ออกแบบเว็บไซต์', 'ดูแลระบบ', 'พัฒนาแอพ']}
+    loop={true}
+    cursor
+    cursorStyle="|"
+    typeSpeed={70}
+    deleteSpeed={50}
+    delaySpeed={1000}
+  />
+</h2>
+
 
 const services = [
   {
@@ -199,13 +213,9 @@ export default function ServicesPage() {
                     <span className="block relative ">
                       แค่บอกเรา{" "}
                       <span className="relative inline-block mt-2">
-                        <span className="relative z-20 text-yellow-400">
+                        <span className="rainbow-text drop-shadow-md relative z-20 text-yellow-400">
                           ทุกอย่างง่ายนิดเดียว
                         </span>
-                        <span
-                          className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-yellow-400/30 to-yellow-400/10 blur-md rounded z-10 pointer-events-none"
-                          aria-hidden="true"
-                        ></span>
                       </span>
                     </span>
                   </h2>
@@ -312,6 +322,25 @@ export default function ServicesPage() {
 
     {/* Section 3: Services */}
 <section id="services" className="min-h-screen px-4 py-16 bg-gradient-to-b from-white to-gray-50 scroll-mt-16">
+  <div className="text-center mb-12">
+      <h2 className="text-3xl sm:text-5xl lg:text-6xl font-mediumn text-gray-800 leading-snug">
+        <span className="text-yellow-400 font-semibold tracking-wide">
+          <Typewriter
+            words={['อยากมีเว็บไซต์ของตัวเอง ?', 'สร้างตัวตนให้กับธุรกิจ ?', 'ติดต่อเราเลย', 'FULL WEB']}
+            loop={true}
+            cursor
+            cursorStyle="|"
+            typeSpeed={100}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
+        </span>
+      </h2>
+      <p className="mt-4 text-gray-500 text-base sm:text-lg">
+        ทีมของเราพร้อมให้บริการครบวงจร เพื่อช่วยให้ธุรกิจของคุณเติบโต
+      </p>
+    </div>
+
   <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
 
     {/* ฝั่งซ้าย: Service Cards */}
@@ -403,16 +432,20 @@ export default function ServicesPage() {
     className="max-w-7xl mx-auto text-center mb-12"
     data-aos="fade-up"
   >
-    <h2 className="text-4xl font-medium mb-4 text-amber-50">เทมเพลตของเรา</h2>
+    <h2 className="text-4xl font-medium mb-4 text-amber-50">ตัวอย่างเทมเพลต</h2>
     <p className="text-amber-50">เรามีเทมเพลตสวย ๆ ให้เลือกตามสไตล์ที่ต้องการ</p>
   </div>
 
   {/* Swiper: Template Cards */}
   <Swiper
-    modules={[Pagination]}
+    modules={[Pagination, Autoplay]}
     spaceBetween={30}
     slidesPerView={1}
     pagination={{ clickable: true }}
+    autoplay={{
+      delay: 3000,
+      disableOnInteraction: false,
+    }}
     breakpoints={{
       640: { slidesPerView: 1 },
       768: { slidesPerView: 2 },
@@ -432,23 +465,51 @@ export default function ServicesPage() {
 
     <SwiperSlide>
       <TemplateCard
-        title="Atlas"
+        title="Business Landing"
         description="เทมเพลตสำหรับธุรกิจหรือเว็บเอเจนซี่"
         image="/tem2.png"
         link="/templates/Atlas"
       />
     </SwiperSlide>
     
-    {/* เพิ่ม Template อื่น ๆ ได้ตรงนี้ เช่น */}
-    {/* <SwiperSlide> <TemplateCard ... /> </SwiperSlide> */}
+
     <SwiperSlide>
       <TemplateCard
         title="Restaurant Landing"
-        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        description="เทมเพลตสำหรับร้านอาหารหรือคาเฟ่"
         image="/tem3.png"
         link="/templates/spering"
       />
     </SwiperSlide>
+    
+    <SwiperSlide>
+      <TemplateCard
+        title="Business Landing"
+        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        image="/tem4.png"
+        link="/templates/eNno"
+      />
+    </SwiperSlide>
+    
+    <SwiperSlide>
+      <TemplateCard
+        title="Business Landing"
+        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        image="/tem5.png"
+        link="/templates/iLanding-1.0.0/index.html"
+      />
+    </SwiperSlide>
+
+    <SwiperSlide>
+      <TemplateCard
+        title="Business Landing"
+        description="เทมเพลตสำหรับบริษัทเริ่มต้นหรือธุรกิจขนาดเล็ก"
+        image="/tem6.png"
+        link="/templates/Sailor-1.0.0/index.html"
+      />
+    </SwiperSlide>
+
+    
   </Swiper>
 </section>
 
